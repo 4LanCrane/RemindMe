@@ -80,6 +80,19 @@ public class DBHandler extends SQLiteOpenHelper {
             db.close();
         }
 
+
+      //this method is used to remove a existing course from our database.
+        public void removeCollection(String Title) {
+            // we are calling a delete method,
+            // in this method we are passing
+            // our id and deleting that course
+            // from our database.
+            SQLiteDatabase db = this.getWritableDatabase();
+            db.delete(TABLE_NAME, ID_COL + " = ?",
+                    new String[]{String.valueOf(Title)});
+            db.close();
+        }
+
         // we have created a new method for reading all the courses.
         public ArrayList<Collections> readCollections() {
             // on below line we are creating a
