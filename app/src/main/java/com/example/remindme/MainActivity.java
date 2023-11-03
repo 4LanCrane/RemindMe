@@ -18,14 +18,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         RecyclerView recyclerView = findViewById(R.id.RecyclerView);
 
-        List<Collections> items = new ArrayList<>();
-        items.add(new Collections("Title","Description"));
-        items.add(new Collections("Title","Description"));
-        items.add(new Collections("Title","Description"));
-        items.add(new Collections("Title","Description"));
-        items.add(new Collections("Title","Description"));
+        DBHandler db = new DBHandler(this);
+        db.addNewCollection("hello","world");
 
         recyclerView.setLayoutManager(new GridLayoutManager(this,2));
-        recyclerView.setAdapter(new MyAdaptor(getApplicationContext(),items));
+        recyclerView.setAdapter(new MyAdaptor(getApplicationContext(),db.readCollections()));
 }
 }
