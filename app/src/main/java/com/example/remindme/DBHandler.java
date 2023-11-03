@@ -55,6 +55,7 @@ public class DBHandler extends SQLiteOpenHelper {
                     + Title_COL + " TEXT,"
                     + DESCRIPTION_COL + " TEXT)";
 
+
             // at last we are calling a exec sql
             // method to execute above sql query
             db.execSQL(query);
@@ -62,6 +63,7 @@ public class DBHandler extends SQLiteOpenHelper {
 
         // this method is use to add new course to our sqlite database.
         public void addNewCollection(String Title, String Description) {
+
 
 
             SQLiteDatabase db = this.getWritableDatabase();
@@ -88,7 +90,7 @@ public class DBHandler extends SQLiteOpenHelper {
             // our id and deleting that course
             // from our database.
             SQLiteDatabase db = this.getWritableDatabase();
-            db.delete(TABLE_NAME, ID_COL + " = ?",
+            db.delete(TABLE_NAME, Title_COL + " = ?",
                     new String[]{String.valueOf(Title)});
             db.close();
         }

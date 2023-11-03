@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
 // method that runs when floating action button is clicked and removes a collection
     public void RemoveCollectionTest(View view) {
         DBHandler db = new DBHandler(this);
-        db.removeCollection("7");
+        db.removeCollection("Test");
         RecyclerView recyclerView = findViewById(R.id.RecyclerView);
         recyclerView.setLayoutManager(new GridLayoutManager(this,2));
         recyclerView.setAdapter(new MyAdaptor(getApplicationContext(),db.readCollections()));
