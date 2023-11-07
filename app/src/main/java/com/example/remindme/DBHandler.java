@@ -100,7 +100,7 @@ public class DBHandler extends SQLiteOpenHelper {
                 do {
                     // on below line we are adding the data from cursor to our array list.
                     collectionsArrayList.add(new Collections(cursorCourses.getString(1),
-                            cursorCourses.getString(2)));
+                            cursorCourses.getString(2),cursorCourses.getInt(0)));
                 } while (cursorCourses.moveToNext());
                 // moving our cursor to next.
             }

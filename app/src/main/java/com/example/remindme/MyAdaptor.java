@@ -2,10 +2,12 @@ package com.example.remindme;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Switch;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -37,7 +39,8 @@ public class MyAdaptor extends RecyclerView.Adapter<MyViewHolder>{
     holder.itemView.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            Log.d(TAG, "onClick: " + Collections.get(position).getTitle());
+            Log.d(TAG, "onClick: " + Collections.get(position).getId());
+
         }
     });
     }
