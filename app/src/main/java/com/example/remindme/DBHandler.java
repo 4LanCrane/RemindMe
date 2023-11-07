@@ -31,7 +31,6 @@ public class DBHandler extends SQLiteOpenHelper {
         // below variable is for our course name column
         private static final String Title_COL = "Title";
 
-        private static int number = 0;
         // below variable for our course description column.
         private static final String DESCRIPTION_COL = "description";
 
@@ -51,7 +50,7 @@ public class DBHandler extends SQLiteOpenHelper {
             // setting our column names
             // along with their data types.
             String query = "CREATE TABLE " + TABLE_NAME + " ("
-                    + ID_COL + " INTEGER PRIMARY KEY, "
+                    + ID_COL + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                     + Title_COL + " TEXT,"
                     + DESCRIPTION_COL + " TEXT)";
 
@@ -62,12 +61,10 @@ public class DBHandler extends SQLiteOpenHelper {
         }
 
         // this method is use to add new course to our sqlite database.
-        public void addNewCollection(String Title, String Description) {
+        public void addNewCollection(String Title) {
             SQLiteDatabase db = this.getWritableDatabase();
             ContentValues values = new ContentValues();
-            values.put(ID_COL,number++);
             values.put(Title_COL, Title);
-            values.put(DESCRIPTION_COL, Description);
             db.insert(TABLE_NAME, null, values);
             db.close();
         }

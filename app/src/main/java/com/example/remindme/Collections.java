@@ -4,10 +4,13 @@ public class Collections {
     String title;
     String description;
 
-    public Collections(String title, String description) {
+
+
+    public Collections(String title, String description){
         this.title = title;
         this.description = description;
     }
+
 
     public String getTitle() {
         return title;

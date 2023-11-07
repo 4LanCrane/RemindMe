@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
     // method that runs when floating action button is clicked and adds a collection
     public void AddCollectionTest(View view) {
         DBHandler db = new DBHandler(this);
-        db.addNewCollection("Test2","Test");
+        db.addNewCollection("Test2");
         RecyclerView recyclerView = findViewById(R.id.RecyclerView);
         recyclerView.setLayoutManager(new GridLayoutManager(this,2));
         recyclerView.setAdapter(new MyAdaptor(getApplicationContext(),db.readCollections()));

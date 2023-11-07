@@ -33,7 +33,7 @@ public class MyAdaptor extends RecyclerView.Adapter<MyViewHolder>{
     public void onBindViewHolder(MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
 
     holder.Title.setText(Collections.get(position).getTitle());
-    holder.description.setText(Collections.get(position).getDescription());
+
     holder.itemView.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View v) {
