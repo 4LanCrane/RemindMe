@@ -36,12 +36,11 @@ public class MyAdaptor extends RecyclerView.Adapter<MyViewHolder>{
 
     holder.Title.setText(Collections.get(position).getTitle());
 
-    holder.itemView.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            Log.d(TAG, "onClick: " + Collections.get(position).getId());
+    holder.itemView.setOnClickListener(v -> {
+        Log.d(TAG, "onClick: " + Collections.get(position).getId());
+        Intent intent = new Intent(context, ReminderList.class);
+        context.startActivity(intent);
 
-        }
     });
     }
 
