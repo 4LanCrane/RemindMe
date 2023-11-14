@@ -18,15 +18,23 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:clickable="true"
-            android:text="Back to Home"
-            android:onClick="AddCollectionTest"/>
+            android:text="Back to Home" />
+
     </androidx.appcompat.widget.Toolbar>
 
-    <TextView
-        android:id="@+id/textViewlist"
+    <Button
+        android:id="@+id/buttonTest"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="TextView" />
+        android:text="ButtonTest"
+        android:onClick="AddReminderTest"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/RecyclerView2"
+        android:scrollbars="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
 
 
 </LinearLayout>

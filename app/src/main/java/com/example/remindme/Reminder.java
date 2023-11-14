@@ -11,4 +11,25 @@ public class Reminder {
         this.reminderId =reminderId;
         this.reminderTitle = reminderTitle;
     }
+
+
+    //getters and setters
+    public int getReminderId() {
+        return reminderId;
+    }
+
+    public void setReminderId(int reminderId) {
+        this.reminderId = reminderId;
+    }
+
+    public String getReminderTitle() {
+        return reminderTitle;
+    }
+
+    public void setReminderTitle(String reminderTitle) {
+        this.reminderTitle = reminderTitle;
+    }
+
+
+
 }

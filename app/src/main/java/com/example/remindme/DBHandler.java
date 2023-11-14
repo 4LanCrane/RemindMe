@@ -1,6 +1,5 @@
 package com.example.remindme;
 
-// we have created a new method for reading all the courses.
 
 
 import android.database.Cursor;
@@ -119,29 +118,7 @@ public class DBHandler extends SQLiteOpenHelper {
             onCreate(db);
         }
 
-        // method to create a new database using the id of the collection or loads the database if it already exists
-        public void createNewDatabase(int id){
-            SQLiteDatabase db = this.getWritableDatabase();
 
-            String query = "CREATE TABLE " + id + " ("
-                    + ID_COL + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-                    + REMINDER_NAME + " TEXT,"
-                    + REMINDER_DESCRIPTION + " TEXT)";
-            db.execSQL(query);
-        }
-
-        //method to check if a database exists
-        public boolean checkDatabase(int id){
-            SQLiteDatabase db = this.getWritableDatabase();
-            String query = "SELECT * FROM " + id;
-            Cursor cursor = db.rawQuery(query, null);
-            if(cursor.getCount() <= 0){
-                cursor.close();
-                return false;
-            }
-            cursor.close();
-            return true;
-        }
 
 
 
