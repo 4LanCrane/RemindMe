@@ -43,7 +43,6 @@ public class MyAdaptor extends RecyclerView.Adapter<MyViewHolder> {
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(intent);
 
-
     });
     }
 
