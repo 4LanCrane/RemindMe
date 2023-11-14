@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-public class MyAdaptor extends RecyclerView.Adapter<MyViewHolder>{
+public class MyAdaptor extends RecyclerView.Adapter<MyViewHolder> {
 
     Context context;
 
@@ -39,7 +39,10 @@ public class MyAdaptor extends RecyclerView.Adapter<MyViewHolder>{
     holder.itemView.setOnClickListener(v -> {
         Log.d(TAG, "onClick: " + Collections.get(position).getId());
         Intent intent = new Intent(context, ReminderList.class);
+        intent.putExtra("collectionId", Collections.get(position).getId());
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(intent);
+
 
     });
     }
