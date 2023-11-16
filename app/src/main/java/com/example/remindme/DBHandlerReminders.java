@@ -13,7 +13,7 @@ public class DBHandlerReminders extends SQLiteOpenHelper {
 
     // creating a constant variables for our database.
     // below variable is for our database name.
-    private static final String DB_NAME = "REMINDERS_DB";
+    private static  String DB_NAME;
 
     // below int is our database version
     private static final int DB_VERSION = 2;
@@ -27,6 +27,8 @@ public class DBHandlerReminders extends SQLiteOpenHelper {
     // below variable is for our course name column
     private static final String Title_COL = "Title";
 
+
+
     // below variable for our course description column.
 
     private static final String Reminer_Title_COL = "Reminder_Title";
@@ -36,8 +38,9 @@ public class DBHandlerReminders extends SQLiteOpenHelper {
 
 
     // creating a constructor for our database handler.
-    public DBHandlerReminders(Context context) {
+    public DBHandlerReminders(Context context,String id) {
         super(context, DB_NAME, null, DB_VERSION);
+        DB_NAME = id;
     }
 
     // below method is for creating a database by running a sqlite query
@@ -82,7 +85,7 @@ public class DBHandlerReminders extends SQLiteOpenHelper {
 
     // we have created a new method for reading all the courses.
     public ArrayList<Reminder> readReminders() {
-        // on below line we are creating a
+        // on below line we are creating
         // database for reading our database.
         SQLiteDatabase db = this.getReadableDatabase();
 
