@@ -42,7 +42,7 @@ public class ReminderList extends AppCompatActivity {
 
         int collectionId = getIntent().getExtras().getInt("collectionId");
         DBHandlerReminders db = new DBHandlerReminders(this,""+collectionId+"");
-        db.addNewReminder("Test2");
+        db.addNewReminder("Test2","Test2","Test2");
         RecyclerView recyclerView = findViewById(R.id.RecyclerView2);
         recyclerView.setLayoutManager(new GridLayoutManager(this,2));
         recyclerView.setAdapter(new MyAdaptorForReminders(getApplicationContext(),db.readReminders()));

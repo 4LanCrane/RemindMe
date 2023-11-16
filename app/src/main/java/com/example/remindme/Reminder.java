@@ -4,12 +4,19 @@ public class Reminder {
     int  reminderId;
     String reminderTitle;
 
+    String reminderTime;
+
+    String reminderDate;
 
 
 
-    public Reminder(int reminderId,String reminderTitle){
+
+    public Reminder(int reminderId,String reminderTitle,String reminderTime,String reminderDate){
         this.reminderId =reminderId;
         this.reminderTitle = reminderTitle;
+        this.reminderTime = reminderTime;
+        this.reminderDate = reminderDate;
+
     }
 
 

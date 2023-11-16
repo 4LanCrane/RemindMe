@@ -29,11 +29,6 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-
-
-
-
-
 // method that runs when button is clicked and removes a collection
     public void RemoveCollectionTest(View view) {
         DBHandler db = new DBHandler(this);

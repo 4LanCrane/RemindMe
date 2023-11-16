@@ -25,14 +25,16 @@ public class DBHandlerReminders extends SQLiteOpenHelper {
     private static final String ID_COL = "id";
 
     // below variable is for our course name column
-    private static final String Title_COL = "Title";
+
 
 
 
     // below variable for our course description column.
 
     private static final String Reminer_Title_COL = "Reminder_Title";
+    private static  String Reminder_Time = "Reminder_Time";
 
+    private static  String Reminder_Date = "Reminder_Date";
 
     // below variable is for our course tracks column.
 
@@ -52,7 +54,9 @@ public class DBHandlerReminders extends SQLiteOpenHelper {
         // along with their data types.
         String query = "CREATE TABLE " + TABLE_NAME + " ("
                 + ID_COL + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-                + Reminer_Title_COL + " TEXT)";
+                + Reminer_Title_COL + " TEXT,"
+                + Reminder_Time + " TEXT,"
+                + Reminder_Date + " TEXT)";
 
 
         // at last we are calling a exec sql
@@ -61,10 +65,12 @@ public class DBHandlerReminders extends SQLiteOpenHelper {
     }
 
     // this method is use to add new course to our sqlite database.
-    public void addNewReminder(String Title) {
+    public void addNewReminder(String Title,String ReminderTime,String ReminderDate) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(Reminer_Title_COL, Title);
+        values.put(Reminder_Time,ReminderTime);
+        values.put(Reminder_Date,ReminderDate);
         db.insert(TABLE_NAME, null, values);
         db.close();
     }
@@ -100,7 +106,8 @@ public class DBHandlerReminders extends SQLiteOpenHelper {
             do {
                 // on below line we are adding the data from cursor to our array list.
                 ReminderArrayList.add(new Reminder(cursorCourses.getInt(0),
-                        cursorCourses.getString(1)));
+                        cursorCourses.getString(1),cursorCourses.getString(2),
+                        cursorCourses.getString(3)));
             } while (cursorCourses.moveToNext());
             // moving our cursor to next.
         }
