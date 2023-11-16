@@ -6,40 +6,39 @@
     android:orientation="vertical">
 
 
-
-
     <androidx.appcompat.widget.Toolbar
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?attr/colorPrimary"
+        android:hapticFeedbackEnabled="true"
         android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme" >
+        android:theme="?attr/actionBarTheme">
 
         <Button
             android:id="@+id/floatingActionButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:clickable="true"
+            android:hapticFeedbackEnabled="true"
+            android:onClick="RemoveCollectionTest"
             android:text="delete Collection"
-            android:onClick="RemoveCollectionTest"/>
+            app:icon="@android:drawable/ic_menu_delete" />
 
 
         <Button
-        android:id="@+id/addCollection"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="add Collection"
-        />
+            android:id="@+id/addCollection"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hapticFeedbackEnabled="true"
+            android:text="add Collection"
+            app:icon="@android:drawable/ic_menu_add" />
     </androidx.appcompat.widget.Toolbar>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/RecyclerView"
-        android:scrollbars="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        />
-
-
+        android:scrollbars="vertical" />
 
 
 </LinearLayout>

@@ -49,6 +49,11 @@ public class ReminderList extends AppCompatActivity {
     }
 
 
+    //method to return to the main activity
+    public void ReturnToMain(View view) {
+        finish();
+    }
+
 
 // on resume method
     @Override
