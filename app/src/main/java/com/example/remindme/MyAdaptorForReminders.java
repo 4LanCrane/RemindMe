@@ -34,8 +34,8 @@ public class MyAdaptorForReminders extends RecyclerView.Adapter<MyViewHolderForR
     public void onBindViewHolder(MyViewHolderForReminders holder, @SuppressLint("RecyclerView") int position) {
 
         holder.Title.setText(Reminder.get(position).getReminderTitle());
-
-
+        holder.Time.setText(Reminder.get(position).getReminderTime());
+        holder.Date.setText(Reminder.get(position).getReminderDate());
     }
 
     ;

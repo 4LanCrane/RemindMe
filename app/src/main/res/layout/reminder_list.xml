@@ -23,13 +23,16 @@
             app:icon="@android:drawable/ic_menu_revert"
             android:onClick="ReturnToMain"/>
 
+        <Button
+            android:id="@+id/buttonTest"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Add Reminder"
+            app:icon="@android:drawable/ic_menu_add"/>
+
     </androidx.appcompat.widget.Toolbar>
 
-    <Button
-        android:id="@+id/buttonTest"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="ButtonTest" />
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/RecyclerView2"

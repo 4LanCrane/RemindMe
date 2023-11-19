@@ -37,6 +37,20 @@ public class Reminder {
         this.reminderTitle = reminderTitle;
     }
 
+    public void setReminderTime(String reminderTime) {
+        this.reminderTime = reminderTime;
+    }
 
+    public String getReminderTime() {
+        return reminderTime;
+    }
+
+    public void setReminderDate(String reminderDate) {
+        this.reminderDate = reminderDate;
+    }
+
+    public String getReminderDate() {
+        return reminderDate;
+    }
 
 }
