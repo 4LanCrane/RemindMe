@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/setReminder"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -23,44 +24,58 @@
 
     </androidx.appcompat.widget.Toolbar>
 
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="40dp" />
 
     <EditText
-        android:id="@+id/editTextText2"
+        android:id="@+id/addReminderTitle"
         android:layout_width="match_parent"
-        android:layout_height="81dp"
+        android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="Reminder Title"
-        android:inputType="text"
-        android:textColorHint="#673AB7" />
-
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="40dp" />
+        android:hint="Reminder Title Name"
+        android:inputType="text" />
 
     <EditText
-        android:id="@+id/editTextTime"
-        android:layout_width="match_parent"
-        android:layout_height="71dp"
-        android:ems="10"
-        android:hint="Reminder Time"
-        android:inputType="time"
-        android:textColorHint="#673AB7" />
+        android:id="@+id/in_date"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="82dp" />
 
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="40dp" />
+    <Button
+        android:id="@+id/btn_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/in_date"
+        android:layout_toEndOf="@+id/in_date"
+        android:layout_toRightOf="@+id/in_date"
+        android:text="SELECT DATE" />
 
     <EditText
-        android:id="@+id/editTextDate"
-        android:layout_width="match_parent"
-        android:layout_height="71dp"
-        android:ems="10"
-        android:hint="Reminder Date"
-        android:inputType="date"
-        android:textColorHint="#673AB7" />
+        android:id="@+id/in_time"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/in_date"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true" />
 
+    <Button
+        android:id="@+id/btn_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btn_date"
+        android:layout_alignStart="@+id/btn_date"
+        android:layout_alignLeft="@+id/btn_date"
+        android:text="SELECT TIME" />
+
+    <Button
+        android:id="@+id/btn_reminder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btn_time"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:text="SET REMINDER"
+        android:onClick="AddReminder"/>
 
 </LinearLayout>

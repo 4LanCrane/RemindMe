@@ -4,8 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 
@@ -33,6 +35,12 @@ public class ReminderList extends AppCompatActivity {
             RecyclerView recyclerView2 = findViewById(R.id.RecyclerView2);
             recyclerView2.setLayoutManager(new GridLayoutManager(this,2));
             recyclerView2.setAdapter(new MyAdaptorForReminders(getApplicationContext(),db.readReminders()));
+            Button addReminder = findViewById(R.id.buttonTest);
+addReminder.setOnClickListener(click -> {
+                Intent intent = new Intent(this, AddNewReminder.class);
+                intent.putExtra("collectionId", collectionId);
+                startActivity(intent);
+            });
         };
 
 
@@ -65,6 +73,9 @@ public class ReminderList extends AppCompatActivity {
         recyclerView.setLayoutManager(new GridLayoutManager(this,2));
         recyclerView.setAdapter(new MyAdaptorForReminders(getApplicationContext(),db.readReminders()));
     }
+
+
+
     
 
 }

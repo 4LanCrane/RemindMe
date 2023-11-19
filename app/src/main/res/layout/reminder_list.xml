@@ -29,8 +29,7 @@
         android:id="@+id/buttonTest"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="ButtonTest"
-        android:onClick="AddReminderTest"/>
+        android:text="ButtonTest" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/RecyclerView2"
