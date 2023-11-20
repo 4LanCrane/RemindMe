@@ -112,7 +112,7 @@ public class AddNewReminder extends AppCompatActivity implements
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         Intent intent = new Intent(this, Alarm.class);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(this,0,intent, PendingIntent.FLAG_IMMUTABLE);
-        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,timeInMillis,AlarmManager.INTERVAL_DAY,pendingIntent);
+        alarmManager.set(AlarmManager.RTC_WAKEUP,timeInMillis,pendingIntent);
         Toast toast = Toast.makeText(this, "Reminder Set", Toast.LENGTH_SHORT);
     }
 }
