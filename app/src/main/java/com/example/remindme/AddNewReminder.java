@@ -1,7 +1,11 @@
 package com.example.remindme;
 
+import android.app.AlarmManager;
 import android.app.DatePickerDialog;
+import android.app.PendingIntent;
 import android.app.TimePickerDialog;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -9,6 +13,8 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
+
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -89,8 +95,24 @@ public class AddNewReminder extends AppCompatActivity implements
             ReminderTime.setText("00:00");
         }
 
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.YEAR, Integer.parseInt(ReminderDate.getText().toString().substring(6)));
+        calendar.set(Calendar.MONTH, Integer.parseInt(ReminderDate.getText().toString().substring(3,5))-1);
+        calendar.set(Calendar.DAY_OF_MONTH, Integer.parseInt(ReminderDate.getText().toString().substring(0,2)));
+        calendar.set(Calendar.HOUR_OF_DAY, Integer.parseInt(ReminderTime.getText().toString().substring(0,2)));
+        calendar.set(Calendar.MINUTE, Integer.parseInt(ReminderTime.getText().toString().substring(3)));
+        calendar.set(Calendar.SECOND, 0);
+        setAlarm(calendar.getTimeInMillis());
 
         db.addNewReminder(ReminderTitle.getText().toString(),ReminderTime.getText().toString(),ReminderDate.getText().toString());
         finish();
+    }
+
+    private void setAlarm(long timeInMillis) {
+        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        Intent intent = new Intent(this, Alarm.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this,0,intent, PendingIntent.FLAG_IMMUTABLE);
+        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,timeInMillis,AlarmManager.INTERVAL_DAY,pendingIntent);
+        Toast toast = Toast.makeText(this, "Reminder Set", Toast.LENGTH_SHORT);
     }
 }
