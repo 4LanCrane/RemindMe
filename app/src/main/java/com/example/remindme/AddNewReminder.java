@@ -68,12 +68,20 @@ public class AddNewReminder extends AppCompatActivity implements
             mHour = c.get(Calendar.HOUR_OF_DAY);
             mMinute = c.get(Calendar.MINUTE);
 
-
             // Launch Time Picker Dialog
             TimePickerDialog timePickerDialog = new TimePickerDialog(this,
-                    (view, hourOfDay, minute) -> txtTime.setText(hourOfDay + ":" + minute), mHour, mMinute, false);
+                    new TimePickerDialog.OnTimeSetListener() {
+
+                        @Override
+                        public void onTimeSet(TimePicker view, int hourOfDay,
+                                              int minute) {
+                            if(hourOfDay <=9){
+                                txtTime.setText("0"+hourOfDay + ":" + minute);
+                            }else{txtTime.setText(hourOfDay + ":" + minute);}
+                        }
+                    }, mHour, mMinute, true);
             timePickerDialog.show();
-    }}
+        }}
 
    // method to take all inputs and store in reminders database
     public void AddReminder(View view) {
