@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.time.Month;
 import java.util.Calendar;
 
 public class AddNewReminder extends AppCompatActivity implements
@@ -56,9 +57,22 @@ public class AddNewReminder extends AppCompatActivity implements
             mDay = c.get(Calendar.DAY_OF_MONTH);
 
 
+//            DatePickerDialog datePickerDialog = new DatePickerDialog(this,
+//                    (view, year, monthOfYear, dayOfMonth) -> {txtDate.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
+//                    }, mYear, mMonth, mDay);
+
             DatePickerDialog datePickerDialog = new DatePickerDialog(this,
-                    (view, year, monthOfYear, dayOfMonth) -> {txtDate.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
-                    }, mYear, mMonth, mDay);
+                    new DatePickerDialog.OnDateSetListener() {
+                        @Override
+                        public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                            if(dayOfMonth<=9){
+                                txtDate.setText("0"+dayOfMonth+"-"+(month+1)+"-"+year);
+                            }else{txtDate.setText(dayOfMonth + "-" + (month +1) + "-" + year);}
+                        }
+                    },mYear,mMonth,mDay);
+
+
+
             datePickerDialog.show();
         }
         if (v == btnTimePicker) {
