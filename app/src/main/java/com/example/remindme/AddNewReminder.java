@@ -144,6 +144,8 @@ public class AddNewReminder extends AppCompatActivity implements
     private void setAlarm(long timeInMillis) {
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         Intent intent = new Intent(this, Alarm.class);
+        String reminderTitle = ((EditText) findViewById(R.id.addReminderTitle)).getText().toString();
+        intent.putExtra("reminderTitle", reminderTitle);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(this,0,intent, PendingIntent.FLAG_IMMUTABLE);
         alarmManager.set(AlarmManager.RTC_WAKEUP,timeInMillis,pendingIntent);
 

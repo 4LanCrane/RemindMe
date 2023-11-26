@@ -30,10 +30,26 @@ public class Alarm extends BroadcastReceiver {
 //        mediaPlayer.start();
         Toast.makeText(context, "Alarm! Wake up! Wake up!", Toast.LENGTH_LONG).show();
 
+        //get the title of the reminder
+        String reminderTitle = intent.getStringExtra("reminderTitle");
 
-        MainActivity mainActivity = new MainActivity();
-        View view = new View(context);
-        mainActivity.createNotification(view);
+       // NotificationMaker notificationMaker = new NotificationMaker(context);
+        if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.O){
+            NotificationChannel channel = new NotificationChannel(reminderTitle,"Notification", NotificationManager.IMPORTANCE_HIGH);
+            NotificationManager manager = context.getSystemService(NotificationManager.class);
+            manager.createNotificationChannel(channel);
+        }
+
+        final String Channel_ID = reminderTitle;
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(context, Channel_ID);
+        builder.setSmallIcon(R.drawable.test);
+        builder.setContentTitle(reminderTitle);
+        builder.setContentText(reminderTitle);
+
+
+
+        NotificationManagerCompat manager = NotificationManagerCompat.from(context);
+        manager.notify(1, builder.build());
     }
 
 }
