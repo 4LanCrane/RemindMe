@@ -31,16 +31,28 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(this, CreateNewCollection.class);
             startActivity(intent);
 
+
+
         });
 
     }
 
 
 
-// method that runs when button is clicked and removes a collection
-    public void RemoveCollectionTest(View view) {
+//method that is run when the remove collection button is press that takes you to the remove collection activity
+    public void RemoveCollection(View view) {
+        Intent intent = new Intent(this, RemoveCollection.class);
+        startActivity(intent);
+    }
+
+
+
+
+
+// test method that runs when button is clicked and removes a collection
+    public void RemoveCollectionTest(View view, String collectionName) {
         DBHandler db = new DBHandler(this);
-        db.removeCollection("Test2");
+        db.removeCollection(collectionName);
         RecyclerView recyclerView = findViewById(R.id.RecyclerView);
         recyclerView.setLayoutManager(new GridLayoutManager(this,2));
         recyclerView.setAdapter(new MyAdaptor(getApplicationContext(),db.readCollections()));

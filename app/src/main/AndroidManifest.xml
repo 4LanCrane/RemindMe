@@ -16,6 +16,9 @@
         <activity android:name=".CreateNewCollection"
             android:exported="true" />
 
+        <activity android:name=".RemoveCollection"
+            android:exported="true" />
+
         <activity android:name=".AddNewReminder"
             android:exported="true" />
 

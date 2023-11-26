@@ -15,12 +15,12 @@
         android:theme="?attr/actionBarTheme">
 
         <Button
-            android:id="@+id/floatingActionButton"
+            android:onClick="RemoveCollection"
+            android:id="@+id/RemoveCollection"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:clickable="true"
             android:hapticFeedbackEnabled="true"
-            android:onClick="createNotification"
             android:text="delete Collection"
             app:icon="@android:drawable/ic_menu_delete" />
 
