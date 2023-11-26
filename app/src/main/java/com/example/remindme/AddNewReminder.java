@@ -102,6 +102,9 @@ public class AddNewReminder extends AppCompatActivity implements
                             if(hourOfDay <=9){
                                 txtTime.setText("0"+hourOfDay + ":" + minute);
                             }else{txtTime.setText(hourOfDay + ":" + minute);}
+
+                            if(minute <=9){
+                                txtTime.setText(hourOfDay + ":" + "0"+minute);}
                         }
                     }, mHour, mMinute, true);
             timePickerDialog.show();

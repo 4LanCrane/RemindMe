@@ -7,13 +7,13 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
-import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+
 
 
 public class MainActivity extends AppCompatActivity {
@@ -30,8 +30,6 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.addCollection).setOnClickListener(click -> {
             Intent intent = new Intent(this, CreateNewCollection.class);
             startActivity(intent);
-
-
 
         });
 
