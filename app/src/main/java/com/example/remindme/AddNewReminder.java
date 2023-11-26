@@ -153,4 +153,13 @@ public class AddNewReminder extends AppCompatActivity implements
         alarmManager.set(AlarmManager.RTC_WAKEUP,timeInMillis,pendingIntent);
 
     }
+
+
+
+
+
+    //method to return to the reminder list
+    public void ReturnToReminderList(View view) {
+        finish();
+    }
 }

@@ -3,6 +3,7 @@ package com.example.remindme;
 
 import android.content.Context;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -14,6 +15,7 @@ public class MyViewHolderForReminders extends RecyclerView.ViewHolder{
     TextView Date;
     TextView Time;
 
+    ImageButton DeleteButton;
 
     public MyViewHolderForReminders(@NonNull View itemView) {
         super(itemView);
@@ -21,6 +23,7 @@ public class MyViewHolderForReminders extends RecyclerView.ViewHolder{
         Date = itemView.findViewById(R.id.Date);
         Time = itemView.findViewById(R.id.Time);
         context = itemView.getContext();
+        DeleteButton = itemView.findViewById(R.id.DeleteButton);
 
     }
 

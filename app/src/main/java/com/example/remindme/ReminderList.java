@@ -2,6 +2,7 @@ package com.example.remindme;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
@@ -23,25 +24,29 @@ public class ReminderList extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.reminder_list);
-        RecyclerView recyclerView = findViewById(R.id.RecyclerView2);
-
-        recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
-        recyclerView.setAdapter(new MyAdaptorForReminders(getApplicationContext(), db.readReminders()));
-        //set the text view to the value of id
-
-
-        //add a reminder to the collection
 
             RecyclerView recyclerView2 = findViewById(R.id.RecyclerView2);
-            recyclerView2.setLayoutManager(new GridLayoutManager(this,2));
+            recyclerView2.setLayoutManager(new LinearLayoutManager(this));
             recyclerView2.setAdapter(new MyAdaptorForReminders(getApplicationContext(),db.readReminders()));
+
             Button addReminder = findViewById(R.id.buttonTest);
-addReminder.setOnClickListener(click -> {
+            addReminder.setOnClickListener(click -> {
                 Intent intent = new Intent(this, AddNewReminder.class);
                 intent.putExtra("collectionId", collectionId);
                 startActivity(intent);
             });
         };
+
+
+    //method so when you click on a reminder it removes it  from the list
+    public void RemoveReminder(View view, String reminderName) {
+        int collectionId = getIntent().getExtras().getInt("collectionId");
+        DBHandlerReminders db = new DBHandlerReminders(this,""+collectionId+"");
+        db.removeReminder(reminderName);
+        RecyclerView recyclerView = findViewById(R.id.RecyclerView2);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(new MyAdaptorForReminders(getApplicationContext(),db.readReminders()));
+    }
 
 
 
@@ -52,14 +57,15 @@ addReminder.setOnClickListener(click -> {
         DBHandlerReminders db = new DBHandlerReminders(this,""+collectionId+"");
         db.addNewReminder("Test2","Test2","Test2");
         RecyclerView recyclerView = findViewById(R.id.RecyclerView2);
-        recyclerView.setLayoutManager(new GridLayoutManager(this,2));
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(new MyAdaptorForReminders(getApplicationContext(),db.readReminders()));
     }
 
 
     //method to return to the main activity
     public void ReturnToMain(View view) {
-        finish();
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
     }
 
 
@@ -70,7 +76,7 @@ addReminder.setOnClickListener(click -> {
         int collectionId = getIntent().getExtras().getInt("collectionId");
         DBHandlerReminders db = new DBHandlerReminders(this,""+collectionId+"");
         RecyclerView recyclerView = findViewById(R.id.RecyclerView2);
-        recyclerView.setLayoutManager(new GridLayoutManager(this,2));
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(new MyAdaptorForReminders(getApplicationContext(),db.readReminders()));
     }
 

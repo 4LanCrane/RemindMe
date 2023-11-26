@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
@@ -36,6 +37,20 @@ public class MyAdaptorForReminders extends RecyclerView.Adapter<MyViewHolderForR
         holder.Title.setText(Reminder.get(position).getReminderTitle());
         holder.Time.setText(Reminder.get(position).getReminderTime());
         holder.Date.setText(Reminder.get(position).getReminderDate());
+        holder.DeleteButton.setOnClickListener(v -> {
+            Log.d(TAG, "onClick: " + Reminder.get(position).getReminderTitle());
+            DBHandlerReminders db = new DBHandlerReminders(context2,""+Reminder.get(position).getReminderId()+"");
+               db.removeReminder(Reminder.get(position).getReminderTitle());
+
+
+
+            Intent intent = new Intent(context2, ReminderList.class);
+            intent.putExtra("collectionId", Reminder.get(position).getReminderId());
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            context2.startActivity(intent);
+        });
+
+
     }
 
     ;
