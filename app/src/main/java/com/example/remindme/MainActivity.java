@@ -1,10 +1,17 @@
 package com.example.remindme;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 
@@ -23,6 +30,9 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.addCollection).setOnClickListener(click -> {
             Intent intent = new Intent(this, CreateNewCollection.class);
             startActivity(intent);
+
+
+
         });
 
     }
@@ -55,6 +65,25 @@ public class MainActivity extends AppCompatActivity {
         RecyclerView recyclerView = findViewById(R.id.RecyclerView);
         recyclerView.setLayoutManager(new GridLayoutManager(this,2));
         recyclerView.setAdapter(new MyAdaptor(getApplicationContext(),db.readCollections()));
+    }
+
+    //method that creates a notification
+    @SuppressLint("MissingPermission")
+    public  void createNotification(View view) {
+        if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.O){
+            NotificationChannel channel = new NotificationChannel("test","test", NotificationManager.IMPORTANCE_DEFAULT);
+            NotificationManager manager = getSystemService(NotificationManager.class);
+            manager.createNotificationChannel(channel);
+        }
+
+        final String Channel_ID = "test";
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, Channel_ID);
+        builder.setSmallIcon(R.drawable.test);
+        builder.setContentTitle("Reminder");
+        builder.setContentText("Alarm! Wake up! Wake up!");
+
+        NotificationManagerCompat manager = NotificationManagerCompat.from(this);
+        manager.notify(1, builder.build());
     }
 
 }

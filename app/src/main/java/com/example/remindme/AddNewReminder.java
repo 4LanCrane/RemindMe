@@ -2,6 +2,9 @@ package com.example.remindme;
 
 import android.app.AlarmManager;
 import android.app.DatePickerDialog;
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.TimePickerDialog;
 import android.content.Context;
@@ -17,6 +20,8 @@ import android.widget.Toast;
 
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 
 import java.time.Month;
 import java.util.Calendar;
@@ -27,6 +32,9 @@ public class AddNewReminder extends AppCompatActivity implements
     Button btnDatePicker, btnTimePicker;
     EditText txtDate, txtTime;
     private int mYear, mMonth, mDay, mHour, mMinute;
+
+    private NotificationManagerCompat notificationManagerCompat;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +50,8 @@ public class AddNewReminder extends AppCompatActivity implements
 
         btnDatePicker.setOnClickListener(this);
         btnTimePicker.setOnClickListener(this);
+
+        notificationManagerCompat = NotificationManagerCompat.from(this);
 
     }
 
@@ -130,11 +140,12 @@ public class AddNewReminder extends AppCompatActivity implements
         finish();
     }
 
+
     private void setAlarm(long timeInMillis) {
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         Intent intent = new Intent(this, Alarm.class);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(this,0,intent, PendingIntent.FLAG_IMMUTABLE);
         alarmManager.set(AlarmManager.RTC_WAKEUP,timeInMillis,pendingIntent);
-        Toast toast = Toast.makeText(this, "Reminder Set", Toast.LENGTH_SHORT);
+
     }
 }

@@ -20,7 +20,7 @@
             android:layout_height="wrap_content"
             android:clickable="true"
             android:hapticFeedbackEnabled="true"
-            android:onClick="RemoveCollectionTest"
+            android:onClick="createNotification"
             android:text="delete Collection"
             app:icon="@android:drawable/ic_menu_delete" />
 
