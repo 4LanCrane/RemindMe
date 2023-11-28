@@ -10,6 +10,7 @@ import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -141,15 +142,21 @@ public class AddNewReminder extends AppCompatActivity implements
 
         db.addNewReminder(ReminderTitle.getText().toString(),ReminderTime.getText().toString(),ReminderDate.getText().toString());
         finish();
+
     }
 
+    private static final String TAG = "AddNewReminder";
+    private int requestCode = 0;private void setAlarm(long timeInMillis) {
 
-    private void setAlarm(long timeInMillis) {
+        int lenght = (new DBHandlerReminders(this,getIntent().getExtras().getString("collectionId")).readReminders().size());
+
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         Intent intent = new Intent(this, Alarm.class);
-        String reminderTitle = ((EditText) findViewById(R.id.addReminderTitle)).getText().toString();
+        EditText reminder = findViewById(R.id.addReminderTitle);
+        String reminderTitle = reminder.getText().toString();
         intent.putExtra("reminderTitle", reminderTitle);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(this,0,intent, PendingIntent.FLAG_IMMUTABLE);
+        Log.d(TAG, "add new has title as : " + intent.getExtras().toString());
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this,lenght,intent, PendingIntent.FLAG_IMMUTABLE);
         alarmManager.set(AlarmManager.RTC_WAKEUP,timeInMillis,pendingIntent);
 
     }

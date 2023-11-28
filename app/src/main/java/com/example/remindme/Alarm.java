@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Build;
 import android.provider.Settings;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -29,9 +30,13 @@ public class Alarm extends BroadcastReceiver {
 //        MediaPlayer mediaPlayer = MediaPlayer.create(context, Settings.System.DEFAULT_NOTIFICATION_URI);
 //        mediaPlayer.start();
         Toast.makeText(context, "Alarm! Wake up! Wake up!", Toast.LENGTH_LONG).show();
-
+        final String TAG = "MyAdaptor";
         //get the title of the reminder
-        String reminderTitle = intent.getStringExtra("reminderTitle");
+        String reminderTitle = null;
+        Log.d(TAG, "Alarm classs has title as : " + intent.getExtras().getString("reminderTitle"));
+        reminderTitle = intent.getExtras().getString("reminderTitle");
+
+
 
        // NotificationMaker notificationMaker = new NotificationMaker(context);
         if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.O){
@@ -40,7 +45,7 @@ public class Alarm extends BroadcastReceiver {
             manager.createNotificationChannel(channel);
         }
 
-        final String Channel_ID = reminderTitle;
+        String Channel_ID = reminderTitle;
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context, Channel_ID);
         builder.setSmallIcon(R.drawable.test);
         builder.setContentTitle(reminderTitle);

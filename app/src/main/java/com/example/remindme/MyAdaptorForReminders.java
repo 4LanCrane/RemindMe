@@ -42,12 +42,9 @@ public class MyAdaptorForReminders extends RecyclerView.Adapter<MyViewHolderForR
             DBHandlerReminders db = new DBHandlerReminders(context2,""+Reminder.get(position).getReminderId()+"");
                db.removeReminder(Reminder.get(position).getReminderTitle());
 
-
-
             Intent intent = new Intent(context2, ReminderList.class);
             intent.putExtra("collectionId", Reminder.get(position).getReminderId());
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            context2.startActivity(intent);
+
         });
 
 
