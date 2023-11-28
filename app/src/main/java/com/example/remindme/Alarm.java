@@ -10,6 +10,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Build;
+import android.os.PowerManager;
 import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
@@ -29,6 +30,11 @@ public class Alarm extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
 //        MediaPlayer mediaPlayer = MediaPlayer.create(context, Settings.System.DEFAULT_NOTIFICATION_URI);
 //        mediaPlayer.start();
+        PowerManager powerManager = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
+        if (Build.VERSION.SDK_INT >= 34) {
+            powerManager.isAllowedInLowPowerStandby(PowerManager.LOW_POWER_STANDBY_ALLOWED_REASON_TEMP_POWER_SAVE_ALLOWLIST);
+        }
+
         Toast.makeText(context, "Alarm! Wake up! Wake up!", Toast.LENGTH_LONG).show();
         final String TAG = "MyAdaptor";
         //get the title of the reminder

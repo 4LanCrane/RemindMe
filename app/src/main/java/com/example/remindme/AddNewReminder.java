@@ -141,7 +141,8 @@ public class AddNewReminder extends AppCompatActivity implements
         setAlarm(calendar.getTimeInMillis());
 
         db.addNewReminder(ReminderTitle.getText().toString(),ReminderTime.getText().toString(),ReminderDate.getText().toString());
-        finish();
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
 
     }
 
