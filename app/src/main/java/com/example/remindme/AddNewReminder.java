@@ -1,5 +1,6 @@
 package com.example.remindme;
 
+import android.annotation.SuppressLint;
 import android.app.AlarmManager;
 import android.app.DatePickerDialog;
 import android.app.Notification;
@@ -9,9 +10,11 @@ import android.app.PendingIntent;
 import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -147,10 +150,12 @@ public class AddNewReminder extends AppCompatActivity implements
     }
 
     private static final String TAG = "AddNewReminder";
-    private int requestCode = 0;private void setAlarm(long timeInMillis) {
+    private int requestCode = 0;
+
+    @SuppressLint("ScheduleExactAlarm")
+    private void setAlarm(long timeInMillis) {
 
         int lenght = (new DBHandlerReminders(this,getIntent().getExtras().getString("collectionId")).readReminders().size());
-
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         Intent intent = new Intent(this, Alarm.class);
         EditText reminder = findViewById(R.id.addReminderTitle);
@@ -158,7 +163,12 @@ public class AddNewReminder extends AppCompatActivity implements
         intent.putExtra("reminderTitle", reminderTitle);
         Log.d(TAG, "add new has title as : " + intent.getExtras().toString());
         PendingIntent pendingIntent = PendingIntent.getBroadcast(this,lenght,intent, PendingIntent.FLAG_IMMUTABLE);
-        alarmManager.set(AlarmManager.RTC_WAKEUP,timeInMillis,pendingIntent);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+          alarmManager.setAlarmClock(
+                    new AlarmManager.AlarmClockInfo(timeInMillis, pendingIntent), pendingIntent);
+          } else {
+            alarmManager.setExact(AlarmManager.RTC_WAKEUP, timeInMillis, pendingIntent);
+        }
 
     }
 
