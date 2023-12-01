@@ -14,12 +14,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 public class MyAdaptor extends RecyclerView.Adapter<MyViewHolder> {
-
     Context context;
-
     private static final String TAG = "MyAdaptor";
     public List<Collections> Collections;
-    private View.OnClickListener onClickListener;
 
     public MyAdaptor(Context context, List<com.example.remindme.Collections> collections) {
         this.context = context;

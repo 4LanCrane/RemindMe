@@ -8,10 +8,9 @@ public class Collections {
     /**
      * constructor for the collections class
      * @param title
-     * @param description
      * @param id
      */
-    public Collections(String title, String description,int id){
+    public Collections(String title,int id){
         this.title = title;
         this.id = id;
     }
