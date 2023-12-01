@@ -30,8 +30,6 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(this, CreateNewCollection.class);
             startActivity(intent);
 
-
-
         });
 
     }
@@ -42,28 +40,6 @@ public class MainActivity extends AppCompatActivity {
     public void RemoveCollection(View view) {
         Intent intent = new Intent(this, RemoveCollection.class);
         startActivity(intent);
-    }
-
-
-
-
-
-// test method that runs when button is clicked and removes a collection
-    public void RemoveCollectionTest(View view, String collectionName) {
-        DBHandler db = new DBHandler(this);
-        db.removeCollection(collectionName);
-        RecyclerView recyclerView = findViewById(R.id.RecyclerView);
-        recyclerView.setLayoutManager(new GridLayoutManager(this,2));
-        recyclerView.setAdapter(new MyAdaptor(getApplicationContext(),db.readCollections()));
-    }
-
-    // method that runs when  button is clicked and adds a collection
-    public void AddCollectionTest(View view) {
-        DBHandler db = new DBHandler(this);
-        db.addNewCollection("Test2");
-        RecyclerView recyclerView = findViewById(R.id.RecyclerView);
-        recyclerView.setLayoutManager(new GridLayoutManager(this,2));
-        recyclerView.setAdapter(new MyAdaptor(getApplicationContext(),db.readCollections()));
     }
 
 
