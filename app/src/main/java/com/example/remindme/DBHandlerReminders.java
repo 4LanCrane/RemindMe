@@ -51,6 +51,8 @@ public class DBHandlerReminders extends SQLiteOpenHelper {
         db.close();
     }
 
+   //get the size of the database but never decrement it
+
 
 
     public void removeReminder(String Title) {

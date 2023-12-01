@@ -19,6 +19,7 @@ import android.widget.TimePicker;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationManagerCompat;
 import java.util.Calendar;
+import java.util.Random;
 
 public class AddNewReminder extends AppCompatActivity implements
         View.OnClickListener {
@@ -165,12 +166,7 @@ public class AddNewReminder extends AppCompatActivity implements
     @SuppressLint("ScheduleExactAlarm")
     private void setAlarm(long timeInMillis) {
 
-        //get the length of the reminder list and add it to the collection id to create a unique alarm id
-        String lengthOfReminderList = String.valueOf((new DBHandlerReminders(this, getIntent().getExtras().getString("collectionId")).readReminders().size()));
-        String collectionId = String.valueOf(getIntent().getExtras().getInt("collectionId"));
-        String combine = collectionId +""+ lengthOfReminderList;
-        int alarmid = Integer.parseInt(combine);
-
+        Random alarmid = new Random();
         Log.d(TAG, "setAlarm id is: " + alarmid);
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE); // get the alarm manager
         Intent intent = new Intent(this, Alarm.class); // intent to start the receiver
@@ -178,7 +174,7 @@ public class AddNewReminder extends AppCompatActivity implements
         String reminderTitle = reminder.getText().toString(); // convert the reminder title to a string
         intent.putExtra("reminderTitle", reminderTitle); // add the reminder title to the intent
         Log.d(TAG, "add new has title as : " + intent.getExtras().toString());
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, alarmid, intent, PendingIntent.FLAG_IMMUTABLE);// create a pending intent
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, alarmid.nextInt(), intent, PendingIntent.FLAG_IMMUTABLE);// create a pending intent
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {// check if the version is marshmallow or above as each version has different methods
             alarmManager.setAlarmClock(
                     new AlarmManager.AlarmClockInfo(timeInMillis, pendingIntent), pendingIntent);
