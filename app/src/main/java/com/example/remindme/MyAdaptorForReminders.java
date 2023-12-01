@@ -15,7 +15,6 @@ public class MyAdaptorForReminders extends RecyclerView.Adapter<MyViewHolderForR
 
     private static final String TAG = "MyAdaptorForReminders";
     public List<Reminder> Reminder;
-    private View.OnClickListener onClickListener;
 
     public MyAdaptorForReminders(Context context, List<com.example.remindme.Reminder> reminders) {
         this.context2 = context;
@@ -45,8 +44,6 @@ public class MyAdaptorForReminders extends RecyclerView.Adapter<MyViewHolderForR
 
 
     }
-
-    ;
 
 
     @Override

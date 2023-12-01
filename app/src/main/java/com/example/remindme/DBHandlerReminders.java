@@ -17,7 +17,7 @@ public class DBHandlerReminders extends SQLiteOpenHelper {
     private static final int DB_VERSION = 2;
     private static final String TABLE_NAME = "Reminders";
     private static final String ID_COL = "id";
-    private static final String Reminer_Title_COL = "Reminder_Title";
+    private static final String Reminder_Title_COL = "Reminder_Title";
     private static  String Reminder_Time = "Reminder_Time";
 
     private static  String Reminder_Date = "Reminder_Date";
@@ -33,7 +33,7 @@ public class DBHandlerReminders extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         String query = "CREATE TABLE " + TABLE_NAME + " ("
                 + ID_COL + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-                + Reminer_Title_COL + " TEXT,"
+                + Reminder_Title_COL + " TEXT,"
                 + Reminder_Time + " TEXT,"
                 + Reminder_Date + " TEXT)";
 
@@ -44,7 +44,7 @@ public class DBHandlerReminders extends SQLiteOpenHelper {
     public void addNewReminder(String Title,String ReminderTime,String ReminderDate) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(Reminer_Title_COL, Title);
+        values.put(Reminder_Title_COL, Title);
         values.put(Reminder_Time,ReminderTime);
         values.put(Reminder_Date,ReminderDate);
         db.insert(TABLE_NAME, null, values);
@@ -55,7 +55,7 @@ public class DBHandlerReminders extends SQLiteOpenHelper {
 
     public void removeReminder(String Title) {
         SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(TABLE_NAME, Reminer_Title_COL + " = ?",
+        db.delete(TABLE_NAME, Reminder_Title_COL + " = ?",
                 new String[]{String.valueOf(Title)});
         db.close();
     }
@@ -80,14 +80,9 @@ public class DBHandlerReminders extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        // this method is called to check if the table exists already.
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
         onCreate(db);
     }
-
-
-
-
 
 
 }

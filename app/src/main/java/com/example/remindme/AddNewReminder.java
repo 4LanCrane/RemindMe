@@ -42,7 +42,6 @@ public class AddNewReminder extends AppCompatActivity implements
         btnTimePicker = (Button) findViewById(R.id.btn_time);
         txtDate = (EditText) findViewById(R.id.in_date);
         txtTime = (EditText) findViewById(R.id.in_time);
-
         btnDatePicker.setOnClickListener(this);
         btnTimePicker.setOnClickListener(this);
 
@@ -166,11 +165,11 @@ public class AddNewReminder extends AppCompatActivity implements
     @SuppressLint("ScheduleExactAlarm")
     private void setAlarm(long timeInMillis) {
 
-        //get the lenght of the reminder list and add it to the collection id to create a unique alarm id
-        String lenghtOfReminderList = String.valueOf((new DBHandlerReminders(this, getIntent().getExtras().getString("collectionId")).readReminders().size()));
+        //get the length of the reminder list and add it to the collection id to create a unique alarm id
+        String lengthOfReminderList = String.valueOf((new DBHandlerReminders(this, getIntent().getExtras().getString("collectionId")).readReminders().size()));
         String collectionId = String.valueOf(getIntent().getExtras().getInt("collectionId"));
-        String conbine = collectionId +""+ lenghtOfReminderList;
-        int alarmid = Integer.parseInt(conbine);
+        String combine = collectionId +""+ lengthOfReminderList;
+        int alarmid = Integer.parseInt(combine);
 
         Log.d(TAG, "setAlarm id is: " + alarmid);
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE); // get the alarm manager

@@ -36,30 +36,6 @@ public class ReminderList extends AppCompatActivity {
         };
 
 
-    //method so when you click on a reminder it removes it  from the list
-    public void RemoveReminder(View view, String reminderName) {
-        int collectionId = getIntent().getExtras().getInt("collectionId");
-        DBHandlerReminders db = new DBHandlerReminders(this,""+collectionId+"");
-        db.removeReminder(reminderName);
-        RecyclerView recyclerView = findViewById(R.id.RecyclerView2);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(new MyAdaptorForReminders(getApplicationContext(),db.readReminders()));
-    }
-
-
-
-    // method that runs when  button is clicked and adds a reminder
-    public void AddReminderTest(View view) {
-
-        int collectionId = getIntent().getExtras().getInt("collectionId");
-        DBHandlerReminders db = new DBHandlerReminders(this,""+collectionId+"");
-        db.addNewReminder("Test2","Test2","Test2");
-        RecyclerView recyclerView = findViewById(R.id.RecyclerView2);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(new MyAdaptorForReminders(getApplicationContext(),db.readReminders()));
-    }
-
-
     //method to return to the main activity
     public void ReturnToMain(View view) {
         Intent intent = new Intent(this, MainActivity.class);
@@ -78,8 +54,5 @@ public class ReminderList extends AppCompatActivity {
         recyclerView.setAdapter(new MyAdaptorForReminders(getApplicationContext(),db.readReminders()));
     }
 
-
-
-    
 
 }
