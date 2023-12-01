@@ -3,9 +3,6 @@ package com.example.remindme;
 import android.annotation.SuppressLint;
 import android.app.AlarmManager;
 import android.app.DatePickerDialog;
-import android.app.Notification;
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.TimePickerDialog;
 import android.content.Context;
@@ -14,20 +11,14 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
-
-
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
-
-import java.time.Month;
 import java.util.Calendar;
 
 public class AddNewReminder extends AppCompatActivity implements
@@ -37,8 +28,9 @@ public class AddNewReminder extends AppCompatActivity implements
     EditText txtDate, txtTime;
     private int mYear, mMonth, mDay, mHour, mMinute;
 
-    private NotificationManagerCompat notificationManagerCompat;
+    private NotificationManagerCompat notificationManagerCompat; // notification manager
 
+    private static final String TAG = "AddNewReminder"; // tag for debugging
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,10 +39,10 @@ public class AddNewReminder extends AppCompatActivity implements
 
 
         TextView ReminderTitle = findViewById(R.id.addReminderTitle);
-        btnDatePicker=(Button)findViewById(R.id.btn_date);
-        btnTimePicker=(Button)findViewById(R.id.btn_time);
-        txtDate=(EditText)findViewById(R.id.in_date);
-        txtTime=(EditText)findViewById(R.id.in_time);
+        btnDatePicker = (Button) findViewById(R.id.btn_date);
+        btnTimePicker = (Button) findViewById(R.id.btn_time);
+        txtDate = (EditText) findViewById(R.id.in_date);
+        txtTime = (EditText) findViewById(R.id.in_time);
 
         btnDatePicker.setOnClickListener(this);
         btnTimePicker.setOnClickListener(this);
@@ -65,26 +57,29 @@ public class AddNewReminder extends AppCompatActivity implements
         if (v == btnDatePicker) {
 
             // Get Current Date
-            final Calendar c = Calendar.getInstance();
-            mYear = c.get(Calendar.YEAR);
-            mMonth = c.get(Calendar.MONTH);
-            mDay = c.get(Calendar.DAY_OF_MONTH);
+            final Calendar c = Calendar.getInstance();// get the current date
+            mYear = c.get(Calendar.YEAR);// get the current year
+            mMonth = c.get(Calendar.MONTH);// get the current month
+            mDay = c.get(Calendar.DAY_OF_MONTH);// get the current day
 
-
-//            DatePickerDialog datePickerDialog = new DatePickerDialog(this,
-//                    (view, year, monthOfYear, dayOfMonth) -> {txtDate.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
-//                    }, mYear, mMonth, mDay);
-
+            // create a date picker dialog
             DatePickerDialog datePickerDialog = new DatePickerDialog(this,
                     new DatePickerDialog.OnDateSetListener() {
-                        @Override
-                        public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                            if(dayOfMonth<=9){
-                                txtDate.setText("0"+dayOfMonth+"-"+(month+1)+"-"+year);
-                            }else{txtDate.setText(dayOfMonth + "-" + (month +1) + "-" + year);}
-                        }
-                    },mYear,mMonth,mDay);
 
+
+                        @Override // method that is run when the date picker is set and sets the date in the text box adds missing 0s
+                        public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                            if (dayOfMonth <= 9) {
+                                txtDate.setText("0" + dayOfMonth + "-" + (month + 1) + "-" + year);
+                            } else if (month <= 9) {
+                                txtDate.setText(dayOfMonth + "-" + "0" + (month + 1) + "-" + year);
+                            } else if (dayOfMonth <= 9 && month <= 9) {
+                                txtDate.setText("0" + dayOfMonth + "-" + "0" + (month + 1) + "-" + year);
+                            } else {
+                                txtDate.setText(dayOfMonth + "-" + (month + 1) + "-" + year);
+                            }
+                        }
+                    }, mYear, mMonth, mDay);
 
 
             datePickerDialog.show();
@@ -100,80 +95,100 @@ public class AddNewReminder extends AppCompatActivity implements
             TimePickerDialog timePickerDialog = new TimePickerDialog(this,
                     new TimePickerDialog.OnTimeSetListener() {
 
-                        @Override
+                        @Override // method that is run when the time picker is set and sets the time in the text box adds missing 0s
                         public void onTimeSet(TimePicker view, int hourOfDay,
                                               int minute) {
-                            if(hourOfDay <=9){
-                                txtTime.setText("0"+hourOfDay + ":" + minute);
-                            }else{txtTime.setText(hourOfDay + ":" + minute);}
+                            if (hourOfDay <= 9) {
+                                txtTime.setText("0" + hourOfDay + ":" + minute);
+                            } else if (minute <= 9) {
+                                txtTime.setText(hourOfDay + ":" + "0" + minute);
+                            } else if (hourOfDay <= 9 && minute <= 9) {
+                                txtTime.setText("0" + hourOfDay + ":" + "0" + minute);
+                            } else {
+                                txtTime.setText(hourOfDay + ":" + minute);
+                            }
 
-                            if(minute <=9){
-                                txtTime.setText(hourOfDay + ":" + "0"+minute);}
+
                         }
                     }, mHour, mMinute, true);
-            timePickerDialog.show();
-        }}
+            timePickerDialog.show();// show the time picker dialog
+        }
+    }
 
-   // method to take all inputs and store in reminders database
+    // method to take all inputs and store in reminders database
     public void AddReminder(View view) {
         int collectionId = getIntent().getExtras().getInt("collectionId");
-        DBHandlerReminders db = new DBHandlerReminders(this,""+collectionId+"");
+        DBHandlerReminders db = new DBHandlerReminders(this, "" + collectionId + "");
 
+
+        // check if the title, date and time are empty and set them to default values
         EditText ReminderTitle = findViewById(R.id.addReminderTitle);
-        if(ReminderTitle.getText().toString().equals("")){
+        if (ReminderTitle.getText().toString().equals("")) {
             ReminderTitle.setText("New Reminder");
         }
 
         EditText ReminderDate = findViewById(R.id.in_date);
-        if(ReminderDate.getText().toString().equals("")){
+        if (ReminderDate.getText().toString().equals("")) {
             ReminderDate.setText("01-01-2021");
         }
 
         EditText ReminderTime = findViewById(R.id.in_time);
-        if(ReminderTime.getText().toString().equals("")){
+        if (ReminderTime.getText().toString().equals("")) {
             ReminderTime.setText("00:00");
         }
 
+        // create a calendar object and set the date and time to the date and time in the text boxes
         Calendar calendar = Calendar.getInstance();
         calendar.set(Calendar.YEAR, Integer.parseInt(ReminderDate.getText().toString().substring(6)));
-        calendar.set(Calendar.MONTH, Integer.parseInt(ReminderDate.getText().toString().substring(3,5))-1);
-        calendar.set(Calendar.DAY_OF_MONTH, Integer.parseInt(ReminderDate.getText().toString().substring(0,2)));
-        calendar.set(Calendar.HOUR_OF_DAY, Integer.parseInt(ReminderTime.getText().toString().substring(0,2)));
+        calendar.set(Calendar.MONTH, Integer.parseInt(ReminderDate.getText().toString().substring(3, 5)) - 1);
+        calendar.set(Calendar.DAY_OF_MONTH, Integer.parseInt(ReminderDate.getText().toString().substring(0, 2)));
+        calendar.set(Calendar.HOUR_OF_DAY, Integer.parseInt(ReminderTime.getText().toString().substring(0, 2)));
         calendar.set(Calendar.MINUTE, Integer.parseInt(ReminderTime.getText().toString().substring(3)));
         calendar.set(Calendar.SECOND, 0);
         setAlarm(calendar.getTimeInMillis());
 
-        db.addNewReminder(ReminderTitle.getText().toString(),ReminderTime.getText().toString(),ReminderDate.getText().toString());
-        Intent intent = new Intent(this, MainActivity.class);
+        // add the reminder to the database
+        db.addNewReminder(ReminderTitle.getText().toString(), ReminderTime.getText().toString(), ReminderDate.getText().toString());
+        // go back to reminder list passing the collection id
+        Intent intent = new Intent(this, ReminderList.class);
+        intent.putExtra("collectionId", collectionId);
         startActivity(intent);
 
     }
 
-    private static final String TAG = "AddNewReminder";
-    private int requestCode = 0;
 
+
+
+    /**
+     * Sets a new alarm.
+     *
+     * @param timeInMillis The time in milliseconds when the alarm should go off.
+     */
     @SuppressLint("ScheduleExactAlarm")
     private void setAlarm(long timeInMillis) {
 
-        int lenght = (new DBHandlerReminders(this,getIntent().getExtras().getString("collectionId")).readReminders().size());
-        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-        Intent intent = new Intent(this, Alarm.class);
-        EditText reminder = findViewById(R.id.addReminderTitle);
-        String reminderTitle = reminder.getText().toString();
-        intent.putExtra("reminderTitle", reminderTitle);
+        //get the lenght of the reminder list and add it to the collection id to create a unique alarm id
+        String lenghtOfReminderList = String.valueOf((new DBHandlerReminders(this, getIntent().getExtras().getString("collectionId")).readReminders().size()));
+        String collectionId = String.valueOf(getIntent().getExtras().getInt("collectionId"));
+        String conbine = collectionId +""+ lenghtOfReminderList;
+        int alarmid = Integer.parseInt(conbine);
+
+        Log.d(TAG, "setAlarm id is: " + alarmid);
+        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE); // get the alarm manager
+        Intent intent = new Intent(this, Alarm.class); // intent to start the receiver
+        EditText reminder = findViewById(R.id.addReminderTitle); // get the reminder title
+        String reminderTitle = reminder.getText().toString(); // convert the reminder title to a string
+        intent.putExtra("reminderTitle", reminderTitle); // add the reminder title to the intent
         Log.d(TAG, "add new has title as : " + intent.getExtras().toString());
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(this,lenght,intent, PendingIntent.FLAG_IMMUTABLE);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-          alarmManager.setAlarmClock(
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, alarmid, intent, PendingIntent.FLAG_IMMUTABLE);// create a pending intent
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {// check if the version is marshmallow or above as each version has different methods
+            alarmManager.setAlarmClock(
                     new AlarmManager.AlarmClockInfo(timeInMillis, pendingIntent), pendingIntent);
-          } else {
+        } else {
             alarmManager.setExact(AlarmManager.RTC_WAKEUP, timeInMillis, pendingIntent);
         }
 
     }
-
-
-
 
 
     //method to return to the reminder list

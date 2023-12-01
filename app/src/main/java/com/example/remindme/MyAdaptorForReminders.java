@@ -2,7 +2,6 @@ package com.example.remindme;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -40,10 +39,10 @@ public class MyAdaptorForReminders extends RecyclerView.Adapter<MyViewHolderForR
         holder.DeleteButton.setOnClickListener(v -> {
             Log.d(TAG, "onClick: " + Reminder.get(position).getReminderTitle());
             DBHandlerReminders db = new DBHandlerReminders(context2,""+Reminder.get(position).getReminderId()+"");
-               db.removeReminder(Reminder.get(position).getReminderTitle());
-
-            Intent intent = new Intent(context2, ReminderList.class);
-            intent.putExtra("collectionId", Reminder.get(position).getReminderId());
+            db.removeReminder(Reminder.get(position).getReminderTitle());
+            Reminder.remove(position);
+            notifyItemRemoved(position);
+            notifyItemRangeChanged(position, Reminder.size());
 
         });
 

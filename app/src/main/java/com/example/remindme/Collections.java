@@ -1,15 +1,18 @@
 package com.example.remindme;
 
 public class Collections {
-    int  id;
-    String title;
-    String description;
+    int  id;//id of the collection
+    String title;//title of the collection
 
 
-
+    /**
+     * constructor for the collections class
+     * @param title
+     * @param description
+     * @param id
+     */
     public Collections(String title, String description,int id){
         this.title = title;
-        this.description = description;
         this.id = id;
     }
 
@@ -30,11 +33,5 @@ public class Collections {
         this.id = id;
     }
 
-    public String getDescription() {
-        return description;
-    }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
 }

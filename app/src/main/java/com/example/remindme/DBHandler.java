@@ -4,10 +4,7 @@ package com.example.remindme;
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-
 import java.util.ArrayList;
-
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteOpenHelper;

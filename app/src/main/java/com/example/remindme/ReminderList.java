@@ -1,15 +1,13 @@
 package com.example.remindme;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
+
 
 
 public class ReminderList extends AppCompatActivity {
@@ -71,7 +69,7 @@ public class ReminderList extends AppCompatActivity {
 
 // on resume method
     @Override
-    protected void onResume() {
+    public void onResume() {
         super.onResume();
         int collectionId = getIntent().getExtras().getInt("collectionId");
         DBHandlerReminders db = new DBHandlerReminders(this,""+collectionId+"");
