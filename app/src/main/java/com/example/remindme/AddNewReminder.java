@@ -97,12 +97,14 @@ public class AddNewReminder extends AppCompatActivity implements
                         @Override // method that is run when the time picker is set and sets the time in the text box adds missing 0s
                         public void onTimeSet(TimePicker view, int hourOfDay,
                                               int minute) {
-                            if (hourOfDay <= 9) {
+
+                             if (hourOfDay <= 9 && minute <= 9) {
+                                txtTime.setText("0" + hourOfDay + ":" + "0" + minute);
+                             } else if (hourOfDay <= 9) {
                                 txtTime.setText("0" + hourOfDay + ":" + minute);
                             } else if (minute <= 9) {
                                 txtTime.setText(hourOfDay + ":" + "0" + minute);
-                            } else if (hourOfDay <= 9 && minute <= 9) {
-                                txtTime.setText("0" + hourOfDay + ":" + "0" + minute);
+
                             } else {
                                 txtTime.setText(hourOfDay + ":" + minute);
                             }
