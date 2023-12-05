@@ -68,12 +68,14 @@ public class AddNewReminder extends AppCompatActivity implements
 
                         @Override // method that is run when the date picker is set and sets the date in the text box adds missing 0s
                         public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                            if (dayOfMonth <= 9) {
+
+                            if (dayOfMonth <= 9 && month <= 9) {
+                                txtDate.setText("0" + dayOfMonth + "-" + "0" + (month + 1) + "-" + year);
+                            }
+                           else if (dayOfMonth <= 9) {
                                 txtDate.setText("0" + dayOfMonth + "-" + (month + 1) + "-" + year);
                             } else if (month <= 9) {
                                 txtDate.setText(dayOfMonth + "-" + "0" + (month + 1) + "-" + year);
-                            } else if (dayOfMonth <= 9 && month <= 9) {
-                                txtDate.setText("0" + dayOfMonth + "-" + "0" + (month + 1) + "-" + year);
                             } else {
                                 txtDate.setText(dayOfMonth + "-" + (month + 1) + "-" + year);
                             }
