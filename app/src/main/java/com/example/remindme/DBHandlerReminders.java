@@ -6,7 +6,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-
 import java.util.ArrayList;
 
 /**
@@ -17,21 +16,22 @@ public class DBHandlerReminders extends SQLiteOpenHelper {
 
     // creating a constant variables for our database.
     // below variable is for our database name.
-    private static  String DB_NAME;
+    private static String DB_NAME;
     private static final int DB_VERSION = 2;
     private static final String TABLE_NAME = "Reminders";
     private static final String ID_COL = "id";
     private static final String Reminder_Title_COL = "Reminder_Title";
-    private static  String Reminder_Time = "Reminder_Time";
+    private static String Reminder_Time = "Reminder_Time";
 
-    private static  String Reminder_Date = "Reminder_Date";
+    private static String Reminder_Date = "Reminder_Date";
 
 
     /**
      * constructor for the database handler
+     *
      * @param context
      */
-    public DBHandlerReminders(Context context,String id) {
+    public DBHandlerReminders(Context context, String id) {
         super(context, DB_NAME, null, DB_VERSION);
         DB_NAME = id;
     }
@@ -39,6 +39,7 @@ public class DBHandlerReminders extends SQLiteOpenHelper {
 
     /**
      * This method is used to create the database
+     *
      * @param db
      */
     @Override
@@ -55,23 +56,25 @@ public class DBHandlerReminders extends SQLiteOpenHelper {
 
     /**
      * This method is used to add a new reminder to the database
+     *
      * @param Title
      */
-    public void addNewReminder(String Title,String ReminderTime,String ReminderDate) {
+    public void addNewReminder(String Title, String ReminderTime, String ReminderDate) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(Reminder_Title_COL, Title);
-        values.put(Reminder_Time,ReminderTime);
-        values.put(Reminder_Date,ReminderDate);
+        values.put(Reminder_Time, ReminderTime);
+        values.put(Reminder_Date, ReminderDate);
         db.insert(TABLE_NAME, null, values);
         db.close();
     }
 
-   //get the size of the database but never decrement it
+    //get the size of the database but never decrement it
 
 
     /**
      * This method is used to remove a reminder from the database
+     *
      * @param Title
      */
     public void removeReminder(String Title) {
@@ -83,7 +86,6 @@ public class DBHandlerReminders extends SQLiteOpenHelper {
 
     /**
      * This method is used to read the reminders from the database
-     *
      */
     public ArrayList<Reminder> readReminders() {
         SQLiteDatabase db = this.getReadableDatabase();
@@ -94,7 +96,7 @@ public class DBHandlerReminders extends SQLiteOpenHelper {
             do {
 
                 ReminderArrayList.add(new Reminder(cursor.getInt(0),
-                        cursor.getString(1),cursor.getString(2),
+                        cursor.getString(1), cursor.getString(2),
                         cursor.getString(3)));
             } while (cursor.moveToNext());
         }

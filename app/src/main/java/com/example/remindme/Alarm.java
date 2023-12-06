@@ -22,6 +22,7 @@ public class Alarm extends BroadcastReceiver {
 
     /**
      * This method is used to create an alarm for the reminder and notify the user when the alarm goes off using a notification
+     *
      * @param context
      * @param intent
      */
@@ -33,7 +34,6 @@ public class Alarm extends BroadcastReceiver {
         String reminderTitle = null;
         Log.d(TAG, "Alarm classs has title as : " + intent.getExtras().getString("reminderTitle"));
         reminderTitle = intent.getExtras().getString("reminderTitle");
-
 
 
         //create a notification channel for the reminder

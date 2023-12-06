@@ -6,12 +6,13 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class MyViewHolder extends RecyclerView.ViewHolder{
+public class MyViewHolder extends RecyclerView.ViewHolder {
     private final Context context;
     TextView Title;
 
     /**
      * This method is used to create the view holder for the recycler view
+     *
      * @param itemView
      */
     public MyViewHolder(@NonNull View itemView) {
@@ -19,7 +20,6 @@ public class MyViewHolder extends RecyclerView.ViewHolder{
         Title = itemView.findViewById(R.id.Title);
         context = itemView.getContext();
     }
-
 
 
 }

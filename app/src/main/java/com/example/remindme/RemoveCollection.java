@@ -2,15 +2,19 @@ package com.example.remindme;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class RemoveCollection extends AppCompatActivity {
+    private static final String TAG = "RemoveCollection";
+
 
     /**
      * This method is called when the activity is created
      * It adds a click listener to the "Submit" button
+     *
      * @param savedInstanceState
      */
     @Override
@@ -25,7 +29,7 @@ public class RemoveCollection extends AppCompatActivity {
         // Add click listener to create button
 
         findViewById(R.id.submitbutton).setOnClickListener(click -> {
-
+            Log.d(TAG, "User clicked Add submit button ");
 
             // Get DBHandler instance
             DBHandler dbHandler = new DBHandler(this);
@@ -35,10 +39,12 @@ public class RemoveCollection extends AppCompatActivity {
 
             // Go back to main activity
             finish();
-        });}
+        });
+    }
 
     /**
      * This method is called when the user clicks the "Return to Main Activity" button
+     *
      * @param view
      */
     public void ReturnToMainActivity(View view) {

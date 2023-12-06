@@ -17,6 +17,7 @@ public class MyAdaptorForReminders extends RecyclerView.Adapter<MyViewHolderForR
 
     /**
      * This method is used to create the adaptor for the recycler view
+     *
      * @param context
      * @param reminders
      */
@@ -29,6 +30,7 @@ public class MyAdaptorForReminders extends RecyclerView.Adapter<MyViewHolderForR
 
     /**
      * This method is used to create the view holder for the recycler view
+     *
      * @param parent
      * @param viewType
      * @return
@@ -40,7 +42,8 @@ public class MyAdaptorForReminders extends RecyclerView.Adapter<MyViewHolderForR
 
 
     /**
-     * This method is used to bind the data to the recycler view and set the on click listener for the recycler view
+     * This method is used to bind the data to the recycler view and set the on click listener for the recycler view used to delete reminders
+     *
      * @param holder
      * @param position
      */
@@ -51,8 +54,8 @@ public class MyAdaptorForReminders extends RecyclerView.Adapter<MyViewHolderForR
         holder.Time.setText(Reminder.get(position).getReminderTime());
         holder.Date.setText(Reminder.get(position).getReminderDate());
         holder.DeleteButton.setOnClickListener(v -> {
-            Log.d(TAG, "onClick: " + Reminder.get(position).getReminderTitle());
-            DBHandlerReminders db = new DBHandlerReminders(context2,""+Reminder.get(position).getReminderId()+"");
+            Log.d(TAG, "onClick: the reminder title is: " + Reminder.get(position).getReminderTitle());
+            DBHandlerReminders db = new DBHandlerReminders(context2, "" + Reminder.get(position).getReminderId() + "");
             db.removeReminder(Reminder.get(position).getReminderTitle());
             Reminder.remove(position);
             notifyItemRemoved(position);
@@ -66,6 +69,7 @@ public class MyAdaptorForReminders extends RecyclerView.Adapter<MyViewHolderForR
 
     /**
      * This method is used to get the number of items in the recycler view
+     *
      * @return
      */
     @Override

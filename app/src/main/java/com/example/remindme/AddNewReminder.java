@@ -84,8 +84,7 @@ public class AddNewReminder extends AppCompatActivity implements
 
                             if (dayOfMonth <= 9 && month <= 9) {
                                 txtDate.setText("0" + dayOfMonth + "-" + "0" + (month + 1) + "-" + year);
-                            }
-                           else if (dayOfMonth <= 9) {
+                            } else if (dayOfMonth <= 9) {
                                 txtDate.setText("0" + dayOfMonth + "-" + (month + 1) + "-" + year);
                             } else if (month <= 9) {
                                 txtDate.setText(dayOfMonth + "-" + "0" + (month + 1) + "-" + year);
@@ -121,9 +120,9 @@ public class AddNewReminder extends AppCompatActivity implements
                         public void onTimeSet(TimePicker view, int hourOfDay,
                                               int minute) {
 
-                             if (hourOfDay <= 9 && minute <= 9) {
+                            if (hourOfDay <= 9 && minute <= 9) {
                                 txtTime.setText("0" + hourOfDay + ":" + "0" + minute);
-                             } else if (hourOfDay <= 9) {
+                            } else if (hourOfDay <= 9) {
                                 txtTime.setText("0" + hourOfDay + ":" + minute);
                             } else if (minute <= 9) {
                                 txtTime.setText(hourOfDay + ":" + "0" + minute);
@@ -141,6 +140,7 @@ public class AddNewReminder extends AppCompatActivity implements
 
     /**
      * method that is run when the add reminder button is clicked
+     *
      * @param view
      */
     public void AddReminder(View view) {
@@ -184,8 +184,6 @@ public class AddNewReminder extends AppCompatActivity implements
     }
 
 
-
-
     /**
      * Sets a new alarm.
      *
@@ -215,6 +213,7 @@ public class AddNewReminder extends AppCompatActivity implements
 
     /**
      * method that is run when the cancel button is clicked to return to the reminder list activity
+     *
      * @param view
      */
     public void ReturnToReminderList(View view) {

@@ -19,6 +19,7 @@ public class DBHandler extends SQLiteOpenHelper {
 
     /**
      * constructor for the database handler
+     *
      * @param context
      */
     public DBHandler(Context context) {
@@ -27,6 +28,7 @@ public class DBHandler extends SQLiteOpenHelper {
 
     /**
      * This method is used to create the database
+     *
      * @param db
      */
     @Override
@@ -40,6 +42,7 @@ public class DBHandler extends SQLiteOpenHelper {
 
     /**
      * This method is used to add a new collection to the database
+     *
      * @param Title
      */
     public void addNewCollection(String Title) {
@@ -53,6 +56,7 @@ public class DBHandler extends SQLiteOpenHelper {
 
     /**
      * This method is used to remove a collection from the database
+     *
      * @param Title
      */
     public void removeCollection(String Title) {
@@ -64,7 +68,6 @@ public class DBHandler extends SQLiteOpenHelper {
 
     /**
      * This method is used to read the collections from the database
-     *
      */
     public ArrayList<Collections> readCollections() {
         ArrayList<Collections> collectionsArrayList = new ArrayList<>();
@@ -83,6 +86,7 @@ public class DBHandler extends SQLiteOpenHelper {
 
     /**
      * This method is used to upgrade the database
+     *
      * @param db
      * @param PreviousVersion
      * @param newVersion

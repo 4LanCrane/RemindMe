@@ -8,7 +8,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class MyViewHolderForReminders extends RecyclerView.ViewHolder{
+public class MyViewHolderForReminders extends RecyclerView.ViewHolder {
     private final Context context;
     TextView Title;
     TextView Date;
@@ -17,6 +17,7 @@ public class MyViewHolderForReminders extends RecyclerView.ViewHolder{
 
     /**
      * This method is used to create the view holder for the recycler view
+     *
      * @param itemView
      */
     public MyViewHolderForReminders(@NonNull View itemView) {
@@ -27,7 +28,6 @@ public class MyViewHolderForReminders extends RecyclerView.ViewHolder{
         context = itemView.getContext();
         DeleteButton = itemView.findViewById(R.id.DeleteButton);
     }
-
 
 
 }
