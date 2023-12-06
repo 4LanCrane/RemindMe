@@ -12,6 +12,11 @@ import androidx.appcompat.app.AppCompatActivity;
  */
 public class CreateNewCollection extends AppCompatActivity {
 
+    /**
+     * This method is called when the activity is created
+     * It adds a click listener to the "Submit" button
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

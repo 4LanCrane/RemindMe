@@ -8,6 +8,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class RemoveCollection extends AppCompatActivity {
 
+    /**
+     * This method is called when the activity is created
+     * It adds a click listener to the "Submit" button
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +37,10 @@ public class RemoveCollection extends AppCompatActivity {
             finish();
         });}
 
+    /**
+     * This method is called when the user clicks the "Return to Main Activity" button
+     * @param view
+     */
     public void ReturnToMainActivity(View view) {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);

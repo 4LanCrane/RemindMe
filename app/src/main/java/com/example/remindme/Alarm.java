@@ -19,6 +19,12 @@ public class Alarm extends BroadcastReceiver {
 
     final String TAG = "Alarm Class";
 
+
+    /**
+     * This method is used to create an alarm for the reminder and notify the user when the alarm goes off using a notification
+     * @param context
+     * @param intent
+     */
     @SuppressLint("MissingPermission")
     @Override
     public void onReceive(Context context, Intent intent) {

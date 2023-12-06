@@ -8,7 +8,13 @@ public class Reminder {
 
 
 
-
+     /**
+      * constructor for the collections class
+      * @param reminderId
+      * @param reminderTitle
+      * @param reminderTime
+      * @param reminderDate
+      */
     public Reminder(int reminderId,String reminderTitle,String reminderTime,String reminderDate){
         this.reminderId =reminderId;
         this.reminderTitle = reminderTitle;

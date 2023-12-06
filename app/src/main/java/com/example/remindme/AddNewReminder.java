@@ -21,6 +21,9 @@ import androidx.core.app.NotificationManagerCompat;
 import java.util.Calendar;
 import java.util.Random;
 
+/**
+ * This class is used to add a new reminder to the database and set an alarm for the reminder
+ */
 public class AddNewReminder extends AppCompatActivity implements
         View.OnClickListener {
 
@@ -66,7 +69,17 @@ public class AddNewReminder extends AppCompatActivity implements
                     new DatePickerDialog.OnDateSetListener() {
 
 
-                        @Override // method that is run when the date picker is set and sets the date in the text box adds missing 0s
+                        /**
+                         *
+                         * @param view the picker associated with the dialog
+                         * @param year the selected year
+                         * @param month the selected month (0-11 for compatibility with
+                         *              {@link Calendar#MONTH})
+                         * @param dayOfMonth the selected day of the month (1-31, depending on
+                         *                   month)
+                         *  method that is run when the date picker is set and sets the date in the text box adds missing 0s
+                         */
+                        @Override
                         public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
 
                             if (dayOfMonth <= 9 && month <= 9) {
@@ -96,7 +109,15 @@ public class AddNewReminder extends AppCompatActivity implements
             TimePickerDialog timePickerDialog = new TimePickerDialog(this,
                     new TimePickerDialog.OnTimeSetListener() {
 
-                        @Override // method that is run when the time picker is set and sets the time in the text box adds missing 0s
+
+                        /**
+                         *
+                         * @param view the picker associated with the dialog
+                         * @param hourOfDay the hour that was set
+                         * @param minute the minute that was set
+                         *  method that is run when the time picker is set and sets the time in the text box adds missing 0s
+                         */
+                        @Override
                         public void onTimeSet(TimePicker view, int hourOfDay,
                                               int minute) {
 
@@ -118,7 +139,10 @@ public class AddNewReminder extends AppCompatActivity implements
         }
     }
 
-    // method to take all inputs and store in reminders database
+    /**
+     * method that is run when the add reminder button is clicked
+     * @param view
+     */
     public void AddReminder(View view) {
         int collectionId = getIntent().getExtras().getInt("collectionId");
         DBHandlerReminders db = new DBHandlerReminders(this, "" + collectionId + "");
@@ -189,7 +213,10 @@ public class AddNewReminder extends AppCompatActivity implements
     }
 
 
-    //method to return to the reminder list
+    /**
+     * method that is run when the cancel button is clicked to return to the reminder list activity
+     * @param view
+     */
     public void ReturnToReminderList(View view) {
         finish();
     }

@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
@@ -16,16 +15,35 @@ public class MyAdaptorForReminders extends RecyclerView.Adapter<MyViewHolderForR
     private static final String TAG = "MyAdaptorForReminders";
     public List<Reminder> Reminder;
 
+    /**
+     * This method is used to create the adaptor for the recycler view
+     * @param context
+     * @param reminders
+     */
+
     public MyAdaptorForReminders(Context context, List<com.example.remindme.Reminder> reminders) {
         this.context2 = context;
         Reminder = reminders;
     }
 
+
+    /**
+     * This method is used to create the view holder for the recycler view
+     * @param parent
+     * @param viewType
+     * @return
+     */
     @Override
     public MyViewHolderForReminders onCreateViewHolder(ViewGroup parent, int viewType) {
         return new MyViewHolderForReminders(LayoutInflater.from(context2).inflate(R.layout.reminderlist_rec, parent, false));
     }
 
+
+    /**
+     * This method is used to bind the data to the recycler view and set the on click listener for the recycler view
+     * @param holder
+     * @param position
+     */
     @Override
     public void onBindViewHolder(MyViewHolderForReminders holder, @SuppressLint("RecyclerView") int position) {
 
@@ -46,6 +64,10 @@ public class MyAdaptorForReminders extends RecyclerView.Adapter<MyViewHolderForR
     }
 
 
+    /**
+     * This method is used to get the number of items in the recycler view
+     * @return
+     */
     @Override
     public int getItemCount() {
         return Reminder.size();

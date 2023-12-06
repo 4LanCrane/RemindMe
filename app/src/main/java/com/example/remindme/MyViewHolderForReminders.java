@@ -15,6 +15,10 @@ public class MyViewHolderForReminders extends RecyclerView.ViewHolder{
     TextView Time;
     ImageButton DeleteButton;
 
+    /**
+     * This method is used to create the view holder for the recycler view
+     * @param itemView
+     */
     public MyViewHolderForReminders(@NonNull View itemView) {
         super(itemView);
         Title = itemView.findViewById(R.id.Title2);

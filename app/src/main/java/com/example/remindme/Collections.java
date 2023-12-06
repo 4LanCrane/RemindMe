@@ -15,7 +15,7 @@ public class Collections {
         this.id = id;
     }
 
-
+//getters and setters
     public String getTitle() {
         return title;
     }

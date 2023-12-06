@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
 
@@ -18,16 +17,33 @@ public class MyAdaptor extends RecyclerView.Adapter<MyViewHolder> {
     private static final String TAG = "MyAdaptor";
     public List<Collections> Collections;
 
+    /**
+     * This method is used to create the adaptor for the recycler view
+     * @param context
+     * @param collections
+     */
     public MyAdaptor(Context context, List<com.example.remindme.Collections> collections) {
         this.context = context;
         Collections = collections;
     }
 
+
+    /**
+     * This method is used to create the view holder for the recycler view
+     * @param parent
+     * @param viewType
+     * @return
+     */
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         return new MyViewHolder(LayoutInflater.from(context).inflate(R.layout.custom_view,parent,false));
     }
 
+    /**
+     * This method is used to bind the data to the recycler view and set the on click listener for the recycler view
+     * @param holder
+     * @param position
+     */
     @Override
     public void onBindViewHolder(MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
 
@@ -43,6 +59,10 @@ public class MyAdaptor extends RecyclerView.Adapter<MyViewHolder> {
     });
     }
 
+    /**
+     * This method is used to get the number of items in the recycler view
+     * @return
+     */
     @Override
     public int getItemCount() {
         return Collections.size();

@@ -13,6 +13,12 @@ import android.widget.Button;
 public class ReminderList extends AppCompatActivity {
 
 
+
+    /**
+     * This method is called when the activity is created
+     * It creates the recycler view and adds a click listener to the "Add Reminder" button
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -36,14 +42,19 @@ public class ReminderList extends AppCompatActivity {
         };
 
 
-    //method to return to the main activity
+    /**
+     * This method is called when the user clicks the "Return to Main Activity" button
+     * @param view
+     */
     public void ReturnToMain(View view) {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
 
 
-// on resume method
+    /**
+     * This method is called on resume of the activity and updates the recycler view
+     */
     @Override
     public void onResume() {
         super.onResume();
